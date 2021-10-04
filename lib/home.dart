@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
       children: <Widget>[
         const SizedBox(height: 10),
         const Text(
-          "Dashboarda",
+          "Dashboard",
           style: TextStyle(
             fontSize: 30,
 
