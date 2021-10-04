@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             children: [
               const Text(
-                "Temperature:d ",
+                "Temperature: ",
                 style: TextStyle(
                   fontSize: 20,
                 ),
