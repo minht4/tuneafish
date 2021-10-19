@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "213182117332",
+    "firebase_url": "https://getxtaf-default-rtdb.firebaseio.com",
+    "project_id": "getxtaf",
+    "storage_bucket": "getxtaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213182117332:android:f120768417e9d7b8169241",
+        "android_client_info": {
+          "package_name": "com.example.getxtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213182117332-2756dh23bsnmb2n3sf8apomabsn4hqdh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-Sal8VUgfX0LPzAtrKe_8pYWcaSAToeA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213182117332-2756dh23bsnmb2n3sf8apomabsn4hqdh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

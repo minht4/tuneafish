@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:getxtest/controllers/home_controller.dart';
 import 'package:get/get.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -8,6 +10,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homeController = Get.put(HomeController());
+    FirebaseDatabase database = FirebaseDatabase.instance;
+    DatabaseReference myRef = database.reference();
 
     return Column(
       children: [
@@ -25,6 +29,9 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               Text('${homeController.temperature.value}', style: TextStyle(fontSize: 20),),
+              TextButton(onPressed: (){
+                myRef.child('Hello').push().child('yes').set('value').asStream();
+              }, child: Text('button',),)
             ],
           ),
         ),
