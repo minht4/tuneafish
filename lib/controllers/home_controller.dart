@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 class HomeController extends GetxController{
-  var temperature = 0.obs;
+  var temperature = .0.obs;
 
   @override
   void onInit() {
