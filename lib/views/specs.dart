@@ -11,7 +11,7 @@ class _SpecsScreenState extends State<SpecsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Change Specifications'),),
+      appBar: AppBar(title: const Text('Change Specifications')),
       body: Center(
         child: Column(
           children:  const <Widget>[
