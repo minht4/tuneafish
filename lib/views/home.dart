@@ -29,9 +29,14 @@ class HomeScreen extends StatelessWidget {
 
     return Column(
       children: [
-        const SizedBox(height: 20,),
-        const Text("Home"),
-        const SizedBox(height: 20,),
+        const SizedBox(height: 20),
+        const Text(
+          "Home",
+          style: TextStyle(
+            fontSize: 30,
+          ),
+        ),
+        const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.fromLTRB(32.0,0.0,0.0,0.0),
           child: Row(
@@ -39,7 +44,37 @@ class HomeScreen extends StatelessWidget {
               const Text(
                 "Temperature: ",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 20
+                ),
+              ),
+              Text(
+                '${homeController.temperature.value}',
+                style: const TextStyle(
+                    fontSize: 20
+                ),
+              ),
+              TextButton(onPressed: (){
+                myRef.child('Temp').push().child('Temp').set('Received').asStream();
+              }, child: Text('Upload temp'),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(32.0,0.0,0.0,0.0),
+          child: Row(
+            children: [
+              const Text(
+                "Water Level: ",
+                style: TextStyle(
+                  fontSize: 20
+                ),
+              ),
+              Text(
+                '#%',
+                style: const TextStyle(
+                    fontSize: 20
                 ),
               ),
               StreamBuilder(
