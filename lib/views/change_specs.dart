@@ -11,14 +11,26 @@ class _SpecsScreenState extends State<SpecsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(''),),
+      appBar: AppBar(title: const Text('Change Specifications'),),
       body: Center(
         child: Column(
-          children:  const <Widget>[
+          children: const <Widget>[
             SizedBox(height: 50),
-            Text('Change tank size here'),
-            SizedBox(height: 20),
-            Text('Change # of fishes here'),
+            TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'New Size'
+              )
+            ),
+            SizedBox(height: 10),
+            TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'New Number of Fish'
+                )
+            )
           ],
         ),
       ),
