@@ -48,15 +48,14 @@ class _SpecsScreenState extends State<SpecsScreen> {
               const SizedBox(height: 20),
               ElevatedButton(onPressed: (){
                 //_sizeController.text = globals.size.toString();
-                print("size: ${_sizeController.text}");
                 globals.size = int.parse(_sizeController.text);
                 globals.fishes = int.parse(_fishController.text);
               }, child: const Text("Save"),),
               const SizedBox(height: 20),
             ],
           ),
-        ),
-      ),
+        )
+      )
     );
   }
 }
