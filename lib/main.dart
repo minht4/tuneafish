@@ -6,8 +6,10 @@ import 'package:getxtest/views/database.dart';
 import 'package:getxtest/views/home.dart';
 import 'package:getxtest/views/settings.dart';
 import 'controllers/dashboard_controller.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -40,16 +42,18 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              Image(
-                image: AssetImage('assets/logo.png'),
-                height: 100,
-              ),
-              Obx(() => screens.elementAt(dashboardController.selectedTab.value))
-            ],
+        body: SafeArea(
+          child: Center(
+            child: Column(
+              children: [
+                Image(
+                  image: AssetImage('assets/logo.png'),
+                  height: 100,
+                ),
+                Obx(() =>
+                    screens.elementAt(dashboardController.selectedTab.value))
+              ],
+            ),
           ),
         ),
       ),
@@ -68,4 +72,3 @@ class Dashboard extends StatelessWidget {
     ));
   }
 }
-
