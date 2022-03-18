@@ -55,6 +55,9 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
+#dependency_overrides:
+  #firebase_messaging_platform_interface: 3.1.6
+  #flutter_local_notifications_platform_interface: 5.0.0
 flutter:
 
   # The following line ensures that the Material Icons font is

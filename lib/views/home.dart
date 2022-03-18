@@ -17,9 +17,9 @@ class HomeScreen extends StatelessWidget {
     DocumentReference temp = specs.doc("temperature");
     DocumentReference wl = specs.doc("waterLevel");
     Stream<DocumentSnapshot> stuff = temp.snapshots();
+    Stream<DocumentSnapshot> waterLevel = wl.snapshots();
     NotificationState().background();
     NotificationState().initState();
-    Stream<DocumentSnapshot> waterLevel = wl.snapshots();
     final homeController = Get.put(HomeController());
 
     addData() async {
