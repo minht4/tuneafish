@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getxtest/views/change_specs.dart';
-
+import 'package:getxtest/globals.dart' as globals;
 import 'change_specs.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -12,8 +12,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  int tankSize = 10;
-  int numFish = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -24,34 +22,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
           'Settings',
           style: TextStyle(
             fontSize: 30,
-          ),
-        ),
-        const SizedBox(height: 20),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(32,0,0,0),
-          child: Row(
-            children: <Widget>[
-              Text(
-                'Tank Size: $tankSize',
-                style: const TextStyle(
-                  fontSize: 20
-                ),
-              )
-            ],
-          ),
-        ),
-        const SizedBox(height: 10),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(32,0,0,0),
-          child: Row(
-            children: <Widget>[
-              Text(
-                'Number of Fish: $numFish',
-                style: const TextStyle(
-                    fontSize: 20
-                ),
-              )
-            ],
           ),
         ),
         const SizedBox(height: 10),

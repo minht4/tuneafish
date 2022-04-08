@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getxtest/views/calendar.dart';
+import 'package:getxtest/views/schedule.dart';
 import 'package:getxtest/views/database.dart';
 import 'package:getxtest/views/home.dart';
 import 'package:getxtest/views/settings.dart';
@@ -34,7 +34,7 @@ class Dashboard extends StatelessWidget {
 
   final List<Widget> screens = [
     HomeScreen(),
-    CalendarScreen(),
+    ScheduleScreen(),
     DatabaseScreen(),
     SettingsScreen(),
   ];
@@ -56,22 +56,19 @@ class Dashboard extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: Obx(
-          () => BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.calendar_today_outlined), label: 'Calendar'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.search), label: 'Database'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.settings), label: 'Settings'),
-            ],
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.grey,
-            currentIndex: dashboardController.selectedTab.value,
-            onTap: (tab) => dashboardController.selectedTab.value = tab,
-          ),
-        ));
+      ),
+      bottomNavigationBar: Obx(() => BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.calendar_today_outlined), label: 'Schedule'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Database'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+        ],
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        currentIndex: dashboardController.selectedTab.value,
+        onTap: (tab) => dashboardController.selectedTab.value = tab,
+      ),
+    ));
   }
 }
