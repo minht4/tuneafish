@@ -56,19 +56,22 @@ class Dashboard extends StatelessWidget {
             ),
           ),
         ),
-      ),
-      bottomNavigationBar: Obx(() => BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.calendar_today_outlined), label: 'Schedule'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Database'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
-        ],
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        currentIndex: dashboardController.selectedTab.value,
-        onTap: (tab) => dashboardController.selectedTab.value = tab,
-      ),
-    ));
+        bottomNavigationBar: Obx(
+          () => BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.calendar_today_outlined), label: 'Schedule'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.search), label: 'Database'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.settings), label: 'Settings'),
+            ],
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.grey,
+            currentIndex: dashboardController.selectedTab.value,
+            onTap: (tab) => dashboardController.selectedTab.value = tab,
+          ),
+        ));
   }
 }
