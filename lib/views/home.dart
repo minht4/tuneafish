@@ -67,12 +67,34 @@ class HomeScreen extends StatelessWidget {
                     return const Text('Loading...');
                   }
                   final data = snapshot.requireData;
-                  return Text(
-                    '${data['temp']}',
-                    style: const TextStyle(fontSize: 20),
-                  );
+                  Color color;
+                  if (data['temp'] < 71 || data['temp'] > 85) {
+                    color = Colors.red;
+                  }
+                  else if ((data['temp'] >= 71 && data['temp'] < 74) || (data['temp'] > 81 && data['temp'] <= 85)) {
+                    color = Colors.orange;
+                  }
+                  else {
+                    color = Colors.green;
+                  }
+                  // if (data['temp'] < 71.0 || data['temp'] > 85.0) {
+                  //   color = Colors.red;
+                  // }
+                  // if ((data['temp'] >= 71.0 && data['temp'] <= 73.0) || (data['temp'] >= 82.0 && data['temp'] <= 85.0)) {
+                  //   color = Colors.orange;
+                  // }
+                  // else {
+                  //   color = Colors.purple;
+                  //   print(data['temp']);
+                  // }
+                  return (SwitchScreen(temp: data['temp'].toDouble(), condition: color,));
+                  // return Text(
+                  //   '${data['temp']}',
+                  //   style: TextStyle(fontSize: 20, color: color),
+                  // );
                 },
               ),
+              const SizedBox(width: 20,),
             ],
           ),
         ),
@@ -97,7 +119,18 @@ class HomeScreen extends StatelessWidget {
                     return const Text('Loading...');
                   }
                   final data = snapshot.requireData;
-                  return Text('${data['level']}', style: const TextStyle(fontSize: 20),);
+                  String detail = "";
+                  Color color;
+                  if (data['level'] == 1) {
+                    detail = 'Water level too low';
+                    color = Colors.red;
+                  }
+                  else {
+                    detail = 'Water level is optimal';
+                    color = Colors.green;
+                  }
+                  return Text(detail,
+                    style: TextStyle(fontSize: 20, color:color),);
                 },
               ),
             ],
@@ -109,7 +142,7 @@ class HomeScreen extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "Tank Size: ${globals.size}",
+                "Tank Volume (Gallon): ${globals.size}",
                 style: const TextStyle(
                   fontSize: 20
                 ),
@@ -123,7 +156,7 @@ class HomeScreen extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "Number of Fishes: ${globals.fishes}",
+                "Number of Fish: ${globals.fishes}",
                 style: const TextStyle(
                     fontSize: 20
                 ),
@@ -135,3 +168,55 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+class SwitchScreen extends StatefulWidget {
+  final double temp;
+  final Color condition;
+  const SwitchScreen({Key? key, required this.temp, required this.condition}) : super(key: key);
+  //const SwitchScreen({Key? key}) : super(key: key);
+
+  @override
+ _SwitchScreenState createState() => _SwitchScreenState();
+}
+
+class _SwitchScreenState extends State<SwitchScreen> {
+
+  void toggleSwitch(bool value) {
+
+    if(globals.isSwitched == false)
+    {
+      setState(() {
+        globals.isSwitched = true;
+        globals.textValue = '°F';
+      });
+    }
+    else
+    {
+      setState(() {
+        globals.isSwitched = false;
+        globals.textValue = '°C';
+      });
+    }
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:[
+          globals.isSwitched ? Text('${(widget.temp).toStringAsFixed(2)}', style: TextStyle(fontSize: 20, color: widget.condition),) :
+            Text('${((widget.temp-32)*(5/9)).toStringAsFixed(2)}', style: TextStyle(fontSize: 20, color: widget.condition),),
+          SizedBox(width: 5),
+          Text(globals.textValue, style: TextStyle(fontSize: 20, color: widget.condition),),
+          SizedBox(width: 20),
+          Switch(
+            onChanged: toggleSwitch,
+            value: globals.isSwitched,
+            activeColor: Colors.white,
+            activeTrackColor: Colors.greenAccent,
+            inactiveThumbColor: Colors.white,
+            inactiveTrackColor: Colors.deepOrange,
+          ),
+      ]);  ;
+  }
+}
+

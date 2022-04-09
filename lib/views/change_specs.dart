@@ -23,7 +23,7 @@ class _SpecsScreenState extends State<SpecsScreen> {
               TextField(
                 controller: _sizeController,
                 decoration: const InputDecoration(
-                  labelText: "Tank Size",
+                  labelText: "Tank Volume (Gallon)",
                   labelStyle: TextStyle(
                     fontSize: 15,
                     color: Colors.white,
@@ -36,7 +36,7 @@ class _SpecsScreenState extends State<SpecsScreen> {
               TextField(
                 controller: _fishController,
                 decoration: const InputDecoration(
-                    labelText: "Number of Fishes",
+                    labelText: "Number of Fish",
                     labelStyle: TextStyle(
                       fontSize: 15,
                       color: Colors.white,
