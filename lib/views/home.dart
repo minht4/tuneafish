@@ -214,7 +214,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
             activeColor: Colors.white,
             activeTrackColor: Colors.greenAccent,
             inactiveThumbColor: Colors.white,
-            inactiveTrackColor: Colors.deepOrange,
+            inactiveTrackColor: Colors.blueAccent,
           ),
       ]);  ;
   }
