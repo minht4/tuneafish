@@ -13,8 +13,12 @@ class _ResultsScreenState extends State<ResultsScreen> {
   Widget build(BuildContext context) {
     FirebaseFirestore db = FirebaseFirestore.instance;
     CollectionReference specs = db.collection("specs");
-    DocumentReference lastTest = specs.doc("lastTest");
-    Stream<DocumentSnapshot> stuff = lastTest.snapshots();
+    Stream<DocumentSnapshot> nitrate = specs.doc("Nitrate").snapshots();
+    Stream<DocumentSnapshot> nitrite = specs.doc("Nitrite").snapshots();
+    Stream<DocumentSnapshot> hardness = specs.doc("Hardness").snapshots();
+    Stream<DocumentSnapshot> chlorine = specs.doc("Chlorine").snapshots();
+    Stream<DocumentSnapshot> alkalinity = specs.doc("Alkalinity").snapshots();
+    Stream<DocumentSnapshot> pH = specs.doc("pH").snapshots();
 
     return Scaffold(
       appBar: AppBar(title: const Text('Test Results'),),
@@ -34,7 +38,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                         child: Column(
                           children: [
                             StreamBuilder(
-                              stream: stuff,
+                              stream: nitrate,
                               builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
                                   return const Text ('Something went wrong');
@@ -44,19 +48,19 @@ class _ResultsScreenState extends State<ResultsScreen> {
                                 }
                                 final data = snapshot.requireData;
                                 String condition = '';
-                                if (data['nitrate'] <= 20) {
+                                if (data['Nitrate'] <= 20) {
                                   condition = 'Normal';
-                                } else if (data['nitrate'] <= 40) {
+                                } else if (data['Nitrate'] <= 40) {
                                   condition = 'Warning';
-                                } else if (data['nitrate'] > 40) {
+                                } else if (data['Nitrate'] > 40) {
                                   condition = 'Critical';
                                 }
-                                return Text('Nitrate: ${data['nitrate']} ($condition)', style: const TextStyle(fontSize: 20));
+                                return Text('Nitrate: ${data['Nitrate']} ($condition)', style: const TextStyle(fontSize: 20));
                               },
                             ),
                             const SizedBox(height: 5),
                             StreamBuilder(
-                              stream: stuff,
+                              stream: nitrate,
                               builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
                                   return const Text ('Something went wrong');
@@ -66,11 +70,11 @@ class _ResultsScreenState extends State<ResultsScreen> {
                                 }
                                 final data = snapshot.requireData;
                                 String advice = '';
-                                if (data['nitrate'] <= 20) {
+                                if (data['Nitrate'] <= 20) {
                                   advice = 'No action required';
-                                } else if (data['nitrate'] <= 40) {
+                                } else if (data['Nitrate'] <= 40) {
                                   advice = 'Consider changing water soon';
-                                } else if (data['nitrate'] > 40) {
+                                } else if (data['Nitrate'] > 40) {
                                   advice = 'Please perform a water change\nCheck for irregularities if issue persists';
                                 }
                                 return Text(advice, style: const TextStyle(fontSize: 12), textAlign: TextAlign.center);
@@ -92,7 +96,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                         child: Column(
                           children: [
                             StreamBuilder(
-                              stream: stuff,
+                              stream: nitrite,
                               builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
                                   return const Text ('Something went wrong');
@@ -102,19 +106,19 @@ class _ResultsScreenState extends State<ResultsScreen> {
                                 }
                                 final data = snapshot.requireData;
                                 String condition = '';
-                                if (data['nitrite'] <= 0.5) {
+                                if (data['Nitrite'] <= 0.5) {
                                   condition = 'Normal';
-                                } else if (data['nitrite'] <= 1) {
+                                } else if (data['Nitrite'] <= 1) {
                                   condition = 'Warning';
-                                } else if (data['nitrite'] > 1) {
+                                } else if (data['Nitrite'] > 1) {
                                   condition = 'Critical';
                                 }
-                                return Text('Nitrite: ${data['nitrite']} ($condition)', style: const TextStyle(fontSize: 20));
+                                return Text('Nitrite: ${data['Nitrite']} ($condition)', style: const TextStyle(fontSize: 20));
                               },
                             ),
                             const SizedBox(height: 5),
                             StreamBuilder(
-                              stream: stuff,
+                              stream: nitrite,
                               builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
                                   return const Text ('Something went wrong');
@@ -124,11 +128,11 @@ class _ResultsScreenState extends State<ResultsScreen> {
                                 }
                                 final data = snapshot.requireData;
                                 String advice = '';
-                                if (data['nitrite'] <= 0.5) {
+                                if (data['Nitrite'] <= 0.5) {
                                   advice = 'No action required';
-                                } else if (data['nitrite'] <= 1) {
+                                } else if (data['Nitrite'] <= 1) {
                                   advice = 'Consider changing water soon';
-                                } else if (data['nitrite'] > 1) {
+                                } else if (data['Nitrite'] > 1) {
                                   advice = 'Please perform a water change\nCheck the tank and fishes if issue persists';
                                 }
                                 return Text(advice, style: const TextStyle(fontSize: 12), textAlign: TextAlign.center);
@@ -150,7 +154,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                         child: Column(
                           children: [
                             StreamBuilder(
-                              stream: stuff,
+                              stream: hardness,
                               builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
                                   return const Text ('Something went wrong');
@@ -160,17 +164,17 @@ class _ResultsScreenState extends State<ResultsScreen> {
                                 }
                                 final data = snapshot.requireData;
                                 String condition = '';
-                                if (data['hardness'] >= 50 && data['hardness'] <= 150) {
+                                if (data['Hardness'] >= 50 && data['Hardness'] <= 150) {
                                   condition = 'Normal';
                                 } else {
                                   condition = 'Critical';
                                 }
-                                return Text('Hardness: ${data['hardness']} ($condition)', style: const TextStyle(fontSize: 20));
+                                return Text('Hardness: ${data['Hardness']} ($condition)', style: const TextStyle(fontSize: 20));
                               },
                             ),
                             const SizedBox(height: 5),
                             StreamBuilder(
-                              stream: stuff,
+                              stream: hardness,
                               builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
                                   return const Text ('Something went wrong');
@@ -180,10 +184,10 @@ class _ResultsScreenState extends State<ResultsScreen> {
                                 }
                                 final data = snapshot.requireData;
                                 String advice = '';
-                                if (data['hardness'] >= 50 && data['hardness'] <= 150) {
+                                if (data['Hardness'] >= 50 && data['Hardness'] <= 150) {
                                   advice = 'No action required';
                                 } else {
-                                  if (data['hardness'] <= 50) {
+                                  if (data['Hardness'] <= 50) {
                                     advice = 'Please increase water hardness\nAdd limestone or crushed coral';
                                   } else {
                                     advice = 'Please decrease water hardness\nReduce the concentration of calcium and magnesium';
@@ -208,7 +212,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                         child: Column(
                           children: [
                             StreamBuilder(
-                              stream: stuff,
+                              stream: chlorine,
                               builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
                                   return const Text ('Something went wrong');
@@ -218,17 +222,17 @@ class _ResultsScreenState extends State<ResultsScreen> {
                                 }
                                 final data = snapshot.requireData;
                                 String condition = '';
-                                if (data['chlorine'] == 0) {
+                                if (data['Chlorine'] == 0) {
                                   condition = 'Normal';
                                 } else {
                                   condition = 'Critical';
                                 }
-                                return Text('Chlorine: ${data['chlorine']} ($condition)', style: const TextStyle(fontSize: 20));
+                                return Text('Chlorine: ${data['Chlorine']} ($condition)', style: const TextStyle(fontSize: 20));
                               },
                             ),
                             const SizedBox(height: 5),
                             StreamBuilder(
-                              stream: stuff,
+                              stream: chlorine,
                               builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
                                   return const Text ('Something went wrong');
@@ -238,7 +242,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                                 }
                                 final data = snapshot.requireData;
                                 String advice = '';
-                                if (data['chlorine'] == 0) {
+                                if (data['Chlorine'] == 0) {
                                   advice = 'No action required';
                                 } else {
                                   advice = 'Please add dechlorinator';
@@ -262,7 +266,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                         child: Column(
                           children: [
                             StreamBuilder(
-                              stream: stuff,
+                              stream: alkalinity,
                               builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
                                   return const Text ('Something went wrong');
@@ -272,17 +276,17 @@ class _ResultsScreenState extends State<ResultsScreen> {
                                 }
                                 final data = snapshot.requireData;
                                 String condition = '';
-                                if (data['alkalinity'] >= 100 && data['alkalinity'] <= 180) {
+                                if (data['Alkalinity'] >= 100 && data['Alkalinity'] <= 180) {
                                   condition = 'Normal';
                                 } else {
                                   condition = 'Critical';
                                 }
-                                return Text('Alkalinity: ${data['alkalinity']} ($condition)', style: const TextStyle(fontSize: 20));
+                                return Text('Alkalinity: ${data['Alkalinity']} ($condition)', style: const TextStyle(fontSize: 20));
                               },
                             ),
                             const SizedBox(height: 5),
                             StreamBuilder(
-                              stream: stuff,
+                              stream: alkalinity,
                               builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
                                   return const Text ('Something went wrong');
@@ -292,10 +296,10 @@ class _ResultsScreenState extends State<ResultsScreen> {
                                 }
                                 final data = snapshot.requireData;
                                 String advice = '';
-                                if (data['alkalinity'] >= 100 && data['alkalinity'] <= 180) {
+                                if (data['Alkalinity'] >= 100 && data['Alkalinity'] <= 180) {
                                   advice = 'No action required';
                                 } else {
-                                  if (data['alkalinity'] < 100) {
+                                  if (data['Alkalinity'] < 100) {
                                     advice = 'Please increase the alkalinity water\nAdd limestone or crushed coral';
                                   } else {
                                     advice = 'Please decrease the alkalinity water\nReduce the concentration of calcium and magnesium';
@@ -320,7 +324,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                         child: Column(
                           children: [
                             StreamBuilder(
-                              stream: stuff,
+                              stream: pH,
                               builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
                                   return const Text ('Something went wrong');
@@ -340,7 +344,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                             ),
                             const SizedBox(height: 5),
                             StreamBuilder(
-                              stream: stuff,
+                              stream: pH,
                               builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                                 if (snapshot.hasError) {
                                   return const Text ('Something went wrong');
